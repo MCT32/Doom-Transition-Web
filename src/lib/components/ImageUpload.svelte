@@ -26,7 +26,7 @@
                 size.innerHTML = `${width}x${height}`;
 
                 if (callback) {
-                    callback(width, height);
+                    callback(reader.result, width, height);
                 }
             };
 
