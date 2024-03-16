@@ -1,6 +1,5 @@
 <script>
     import ImageUpload from "$lib/components/ImageUpload.svelte";
-    import Jimp from "jimp";
 
 
     let resX;
@@ -20,6 +19,9 @@
 
     let resButton1;
     let resButton2;
+
+    let output;
+    let showOutput = false;
 
     function image1Set(image, width, height) {
         resButton1.disabled = false;
@@ -54,12 +56,7 @@
     }
 
     function generate() {
-        //let foreground = Jimp.read(image1);
-        //let background = Jimp.read(image2);
-
-        //foreground.cover(resX, resY, Jimp.RESIZE_BILINEAR || Jimp.HORIZONTAL_ALIGN_CENTER || Jimp.VERTICAL_ALIGN_MIDDLE);
-
-
+        
     }
 </script>
 
@@ -74,7 +71,7 @@
         <ImageUpload callback={image1Set} />
     </div>
     <div>
-        <h2 class="text-white text-center text-xl">Background</h2>
+        <h2 class="text-white text-center text-xlimport_events.default is not a constructor">Background</h2>
         <ImageUpload callback={image2Set} />
     </div>
 </div>
@@ -89,5 +86,9 @@
         <button bind:this={resButton1} on:click={image1Resolution} disabled class="text-white bg-zinc-600 py-1 rounded-l px-2 hover:bg-zinc-500 disabled:bg-zinc-500">Use foreground resolution</button><!--
         --><button bind:this={resButton2} on:click={image2Resolution} disabled class="text-white bg-zinc-600 py-1 rounded-r px-2 hover:bg-zinc-500 disabled:bg-zinc-500">Use background resolution</button>
     </div>
-    <button disabled={!(resX > 0 && resY > 0 && image1uploaded && image2uploaded)} class="text-white bg-orange-500 hover:bg-orange-400 disabled:bg-orange-400 py-1 px-2 rounded">Generate</button>
+    <button disabled={!(resX > 0 && resY > 0 && image1uploaded && image2uploaded)} on:click={generate} class="text-white bg-orange-500 hover:bg-orange-400 disabled:bg-orange-400 py-1 px-2 rounded">Generate</button>
 </div>
+
+{#if showOutput}
+    <img src={output} alt="Output">
+{/if}

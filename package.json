@@ -23,8 +23,5 @@
 		"unplugin-icons": "^0.18.5",
 		"vite": "^5.0.3"
 	},
-	"type": "module",
-	"dependencies": {
-		"jimp": "^0.22.12"
-	}
+	"type": "module"
 }
